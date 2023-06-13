@@ -1,0 +1,80 @@
+<!-- search bar -->
+<form id="searchBar">
+    <input type="text" #input [(ngModel)]="name" placeholder="Please enter an artist name." name="input" id="name" (keydown.enter)='searchArtsy(input.value)'>
+    <br>
+    <button id="search" type="button" value="Search" (click)="searchArtsy(input.value)" [disabled]="name === ''">Search
+      <span *ngIf="showLoad" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    </button>&nbsp;
+    <input id="clear" type="button" value="Clear" (click)="clearArtsy()" [disabled]="name === ''">
+</form>
+
+<!-- search -->
+<div class="alert alert-danger" role="alert" *ngIf="showAlert" id="alertSearch">
+  No results.
+</div>
+<ngb-carousel *ngIf="showSrch">
+    <ng-template ngbSlide *ngFor="let srch of search">
+      <div [class.selected]="srch === selectedSearch" type="button" (click)="artistArtsy(srch)">
+        <div class="picsum-img-wrapper">
+          <img [src]="srch._links.thumbnail.href" alt="Random first slide" style="width: 100%;" onerror="this.src='assets/img/artsy_logo.svg';">
+        </div>
+        <div class="carousel-caption">
+          <h3>{{srch.title}}</h3>
+        </div>
+      </div>
+    </ng-template>
+</ngb-carousel>
+<!-- <div class="container-fluid py-2" id="container">
+  <div class="d-flex flex-row flex-nowrap overflow-auto justify-content around">
+    <div class="card" ngbSlide *ngFor="let srch of search" [class.selected]="srch === selectedSearch" type="button" (click)="artistArtsy(srch)">
+      <img class="card-img-top" [src]="srch._links.thumbnail.href" onerror="this.src='assets/img/artsy_logo.svg';" alt="Card image cap">
+      <div class="card-body" [id]="srch._links.self.href">
+        <p>{{srch.title}}</p>
+      </div>
+    </div>
+</div> -->
+
+
+<!-- nav bar -->
+<div class="text-center">
+  <span id="loadArt" *ngIf="showLoadArt" class="spinner-border" role="status" aria-hidden="true"></span>
+</div>
+<form *ngIf="showBtn" id="formBtn">
+  <input id="artistBtn" type="button" value="Artist Info" (click)="artistDisplay()">
+  <input id="artworksBtn" type="button" value="Artworks" (click)="artworksDisplay()">
+</form>
+
+<!-- artist -->
+<div *ngIf="showArtist">
+  <div *ngIf="showArtistContent" id="artistInfo">
+    <div id="name">{{artist.name}}&nbsp;({{artist.birthday}}-{{artist.deathday}})</div>
+    <div id="nationality">{{artist.nationality}}</div>
+    <div id="biography">{{artist.biography}}</div>
+  </div>
+</div>
+
+<!-- artworks -->
+<div *ngIf="showArtworks">
+  <div id="alertArtworks" class="alert alert-danger" role="alert" *ngIf="showAlertArtworks">
+    No artworks.
+  </div>
+  <div *ngIf="showArtworksContent" id="artworkContainer">
+    <div id="cardArtworks" class="card text-center d-flex flex-column" *ngFor="let artwork of artworks">
+      <div id="cardImageArtworks">
+        <img src={{artwork._links.thumbnail.href}} class="card-img-top" alt="...">
+      </div>
+      
+      <div class="mt-auto" id="cardBodyArtworks">
+        <div class="card-text">
+          <div>{{artwork.title}}</div>
+          <div>{{artwork.date}}</div>
+        </div>
+        <button id="categoriesBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" [class.selected]="artwork === selectedArtwork" (click)="geneArtsy(artwork)">
+          Categories
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <app-gene [selectedArtwork]="selectedArtwork"></app-gene>
+</div>

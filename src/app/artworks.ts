@@ -1,0 +1,45 @@
+export interface Artworks {
+    id: string,
+    slug: string,
+    created_at: string,
+    updated_at: string,
+    title: string,
+    category: string,
+    medium: string,
+    date: string,
+    dimensions: object,
+    published: boolean,
+    website: string,
+    signature: string,
+    series: string,
+    provenance: string,
+    literature: string,
+    exhibition_history: string,
+    collecting_institution: string,
+    additional_information: string,
+    image_rights: string,
+    blurb: string,
+    unique: boolean,
+    cultural_maker: null, //?? null
+    iconicity: number,
+    can_inquire: boolean,
+    can_acquire: boolean,
+    can_share: boolean,
+    sale_message: null, // null
+    sold: boolean,
+    image_versions: object,
+    _links: {
+      thumbnail: {href: string},
+      image: Object,
+      partner: Object,
+      self: Object,
+      permalink: Object,
+      genes: {href: string},
+      artists: Object,
+      similar_artworks: Object,
+      collection_users: Object,
+      sale_artworks: Object
+    },
+    _embedded: Object
+  }
+  

@@ -1,0 +1,36 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <div id="title">
+            <div id="titleImg">
+              <img class="img-fluid" src={{selectedArtwork?._links?.thumbnail?.href}}>
+            </div>
+            <div id="titleDate">
+              <div>{{selectedArtwork?.title}}</div>
+              <div>{{selectedArtwork?.date}}</div>
+            </div>
+          </div>  
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="text-center">
+        <span *ngIf="showLoad" class="spinner-border" role="status" aria-hidden="true"></span>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="showAlert">
+        No categories.
+      </div>
+      <div class="modal-body" *ngIf="showContent">
+        <div class="card text-center d-flex flex-column" *ngFor="let gene of genes">
+          <div id="cardImg">
+            <img src={{gene._links.thumbnail.href}} class="card-img-top">
+          </div>          
+          <div class="mt-auto">
+            {{gene.name}}
+          </div>
+        </div>        
+      </div>      
+    </div>
+  </div>
+</div>
