@@ -12,7 +12,7 @@
 <div class="alert alert-danger" role="alert" *ngIf="showAlert" id="alertSearch">
   No results.
 </div>
-<ngb-carousel *ngIf="showSrch">
+<!-- <ngb-carousel *ngIf="showSrch">
     <ng-template ngbSlide *ngFor="let srch of search">
       <div [class.selected]="srch === selectedSearch" type="button" (click)="artistArtsy(srch)">
         <div class="picsum-img-wrapper">
@@ -23,8 +23,8 @@
         </div>
       </div>
     </ng-template>
-</ngb-carousel>
-<!-- <div class="container-fluid py-2" id="container">
+</ngb-carousel> -->
+<div class="container-fluid py-2" id="container">
   <div class="d-flex flex-row flex-nowrap overflow-auto justify-content around">
     <div class="card" ngbSlide *ngFor="let srch of search" [class.selected]="srch === selectedSearch" type="button" (click)="artistArtsy(srch)">
       <img class="card-img-top" [src]="srch._links.thumbnail.href" onerror="this.src='assets/img/artsy_logo.svg';" alt="Card image cap">
@@ -32,7 +32,7 @@
         <p>{{srch.title}}</p>
       </div>
     </div>
-</div> -->
+</div>
 
 
 <!-- nav bar -->
